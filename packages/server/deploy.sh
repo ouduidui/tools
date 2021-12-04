@@ -3,6 +3,7 @@
 basepath=$(cd `dirname $0`;pwd);
 cd ${basepath};
 
+git checkout .;
 git pull;
 
 docker build . -t ouduidui/web-crawler-node;
