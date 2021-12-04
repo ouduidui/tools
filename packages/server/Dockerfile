@@ -1,8 +1,8 @@
 FROM node:14.18.1
 
-WORKDIR /home/web-crawler-node
+WORKDIR /home/tool-egg-server
 
-COPY . /home/web-crawler-node
+COPY . /home/tool-egg-server
 
 RUN npm install
 
