@@ -13,6 +13,13 @@ export default (appInfo: EggAppInfo) => {
   // add your special config in here
   const bizConfig = {
     sourceUrl: `https://github.com/eggjs/examples/tree/master/${appInfo.name}`,
+    cluster: {
+      listen: {
+        path: '',
+        port: 1129,
+        hostname: '0.0.0.0',
+      },
+    },
   };
 
   // the return config will combines to EggAppConfig
