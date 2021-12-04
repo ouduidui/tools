@@ -28,7 +28,6 @@ if (process.env.NODE_ENV === 'production') {
   );
 }
 
-// https://vitejs.dev/config/
 export default defineConfig({
   plugins,
   resolve: {
@@ -42,10 +41,8 @@ export default defineConfig({
     }
   },
   css: {
-    // 引入SCSS全局变量
     preprocessorOptions: {
       scss: {
-        // 避免出现: build时的 @charset 必须在第一行的警告
         charset: false,
         additionalData: '@import "./src/style/variable.scss";'
       }
@@ -57,7 +54,7 @@ export default defineConfig({
       '^/baseApi': {
         target: 'http://0.0.0.0:1129',
         changeOrigin: true,
-        rewrite: (path) => path.replace(/^\/baseApi/, '/api')
+        rewrite: (path) => path.replace(/^\/baseApi/, '')
       }
     }
   }

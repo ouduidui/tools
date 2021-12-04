@@ -7,5 +7,5 @@ export default (app: Application) => {
 
   // 通过哔哩哔哩用户ID获取视频列表
   router.get('/api/crawler/bili-bili/video-list/:uid', controller.biliBili.videoList);
-  router.get('/api/crawler/bili-bili//comments-list/:vid', controller.biliBili.commentList);
+  router.get('/api/crawler/bili-bili/comments-list/:vid', controller.biliBili.commentList);
 };
