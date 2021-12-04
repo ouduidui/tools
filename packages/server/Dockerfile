@@ -6,6 +6,8 @@ COPY . /home/web-crawler-node
 
 RUN npm install
 
-EXPOSE 1129
+RUN npm run stop
 
-CMD npm start
+EXPOSE 7001
+
+CMD npm run start
