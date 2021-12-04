@@ -2,11 +2,9 @@ FROM node:14.18.1
 
 WORKDIR /home/web-crawler-node
 
-COPY package.json /home/web-crawler-node/package.json
+COPY . /home/web-crawler-node
 
 RUN npm install
-
-COPY . /home/web-crawler-node
 
 EXPOSE 1129
 
