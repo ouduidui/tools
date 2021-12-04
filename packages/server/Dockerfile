@@ -8,6 +8,8 @@ RUN npm install
 
 RUN npm run stop
 
+RUN npm run tsc
+
 EXPOSE 7001
 
 CMD [ "npm", "run", "start" ]
