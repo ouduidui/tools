@@ -1,0 +1,16 @@
+{
+  "name": "tools",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "install": "yarn install && yarn init:web && yarn init:server",
+    "install:web": "cd ./packages/web && yarn install",
+    "install:server": "cd ./packages/server && yarn install",
+    "dev": "yarn dev:web & yarn dev:server",
+    "dev:web": "cd ./packages/web && yarn dev",
+    "dev:server": "cd ./packages/server && yarn dev"
+  },
+  "repository": "git@github.com:OUDUIDUI/tools.git",
+  "author": "oushihao <oushihao97@163.com>",
+  "license": "MIT"
+}
