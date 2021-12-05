@@ -52,7 +52,7 @@ export default defineConfig({
     host: '0.0.0.0',
     proxy: {
       '^/baseApi': {
-        target: 'http://0.0.0.0:1129',
+        target: 'http://0.0.0.0:7001',
         changeOrigin: true,
         rewrite: (path) => path.replace(/^\/baseApi/, '')
       }
