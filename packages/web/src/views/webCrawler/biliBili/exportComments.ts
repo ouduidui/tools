@@ -29,7 +29,7 @@ let localComments: CommentType[] = [];
 export const exportComments = async (vid: number, title: string) => {
   const isSuccess:boolean = await getComments(vid);
   if(isSuccess) {
-    new ExportToExcel().export(CommentsFormat(), title);
+    await new ExportToExcel().export(CommentsFormat(), title);
   }
 }
 
