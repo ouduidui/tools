@@ -73,7 +73,7 @@ export default class BiliBili extends Service {
    * @param page {number}
    * @private
    */
-  private async _getCommentList(vid :string, page = 1): Promise<[string, any]> {
+  private async _getCommentList(vid: string, page = 1): Promise<[string, any]> {
     try {
       const { ctx } = this;
       const { status, data } = await ctx.curl(`https://api.bilibili.com/x/v2/reply?type=1&pn=${page}&oid=${vid}&sort=0`, {
@@ -82,7 +82,7 @@ export default class BiliBili extends Service {
       if (status === 200) {
         const { code, message } = data;
         if (code === 0) {
-          return [ '', this._commentListResponseHandle(data.data) ] as [string, any];
+          return [ '', await this._commentListResponseHandle(data.data) ] as [string, any];
         }
         return [ message, null ];
       }
@@ -98,7 +98,7 @@ export default class BiliBili extends Service {
    * @param data {any}
    * @private
    */
-  private _commentListResponseHandle(data: any): CommentListResponse {
+  private async _commentListResponseHandle(data: any): Promise<CommentListResponse> {
     const { page, replies } = data;
     const pagination: PaginationType = {
       pages: Math.ceil(page.count / page.size),
@@ -108,7 +108,7 @@ export default class BiliBili extends Service {
     };
 
     const comments: CommentType[] = [];
-    BiliBili._commentsPushHandle(comments, replies);
+    await this._commentsPushHandle(comments, replies);
 
     return {
       pagination,
@@ -116,9 +116,9 @@ export default class BiliBili extends Service {
     };
   }
 
-  private static _commentsPushHandle(comments: CommentType[], replies: any) {
+  private async _commentsPushHandle(comments: CommentType[], replies: any) {
     for (let i = 0; i < replies.length; i++) {
-      const r:any = replies[i];
+      const r: any = replies[i];
       comments.push({
         member: {
           uid: r.member.mid,
@@ -132,9 +132,55 @@ export default class BiliBili extends Service {
         reply: r.rcount,
       });
 
-      if (r.replies && r.replies.length) {
-        BiliBili._commentsPushHandle(comments, r.replies);
+      if (r.rcount) {
+        await this.getCommentsReplies(comments, r.rpid, r.oid);
       }
+    }
+  }
+
+  private async getCommentsReplies(comments: CommentType[], rpid: number, oid: number) {
+    const [ errMsg, data ] = await this._getCommentsReplies(rpid, oid, 1);
+    console.log(errMsg);
+    const localReplies:any[] = [];
+    if (data) {
+      const { page, replies } = data;
+      const pages = Math.ceil(page.count / page.size);
+      localReplies.push(...replies);
+
+      if (pages > 1) {
+        for (let p = 2; p <= pages; p++) {
+          const [ errMsg, data2 ] = await this._getCommentsReplies(rpid, oid, p);
+          console.log(errMsg);
+          if (data2) {
+            localReplies.push(...data2.replies);
+          }
+        }
+      }
+
+      await this._commentsPushHandle(comments, localReplies);
+    }
+  }
+
+  private async _getCommentsReplies(rpid: number, oid: number, page: number) {
+    try {
+      const { ctx } = this;
+      const {
+        status,
+        data,
+      } = await ctx.curl(`https://api.bilibili.com/x/v2/reply/reply?type=1&pn=${page}&oid=${oid}&sort=0&root=${rpid}`, {
+        dataType: 'json',
+      });
+      if (status === 200) {
+        const { code, message } = data;
+        if (code === 0) {
+          return [ '', data.data ] as [string, any];
+        }
+        return [ message, null ];
+      }
+      return [ data.message, null ] as [string, any];
+    } catch (e) {
+      console.log(e);
+      return [ e.message, null ] as [string, any];
     }
   }
 }
