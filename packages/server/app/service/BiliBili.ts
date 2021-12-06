@@ -107,8 +107,19 @@ export default class BiliBili extends Service {
       limit: page.size,
     };
 
-    const comments: CommentType[] = replies.map(r => {
-      return {
+    const comments: CommentType[] = [];
+    BiliBili._commentsPushHandle(comments, replies);
+
+    return {
+      pagination,
+      comments,
+    };
+  }
+
+  private static _commentsPushHandle(comments: CommentType[], replies: any) {
+    for (let i = 0; i < replies.length; i++) {
+      const r:any = replies[i];
+      comments.push({
         member: {
           uid: r.member.mid,
           name: r.member.uname,
@@ -119,12 +130,11 @@ export default class BiliBili extends Service {
         created: r.ctime,
         like: r.like,
         reply: r.rcount,
-      } as CommentType;
-    });
+      });
 
-    return {
-      pagination,
-      comments,
-    };
+      if (r.replies && r.replies.length) {
+        BiliBili._commentsPushHandle(comments, r.replies);
+      }
+    }
   }
 }
