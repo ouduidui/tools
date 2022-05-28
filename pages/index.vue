@@ -1,5 +1,5 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+const { data } = await useFetch('/hello')
+</script>
 
-<template>HelloWorld</template>
-
-<style scope></style>
+<template>{{ data.msg }}</template>
