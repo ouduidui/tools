@@ -4,7 +4,6 @@ specifiers:
   '@iconify-json/carbon': ^1.1.5
   '@iconify-json/mdi': ^1.1.19
   '@ouduidui/eslint-config-vue': ^0.1.1
-  '@pinia/nuxt': ^0.1.8
   '@unocss/nuxt': ^0.31.8
   '@unocss/reset': ^0.31.12
   '@vueuse/core': ^8.3.0
@@ -22,7 +21,6 @@ devDependencies:
   '@iconify-json/carbon': 1.1.5
   '@iconify-json/mdi': 1.1.19
   '@ouduidui/eslint-config-vue': 0.1.1_jzhokl4shvj5szf5bgr66kln2a
-  '@pinia/nuxt': 0.1.8
   '@unocss/nuxt': 0.31.12
   '@unocss/reset': 0.31.12
   '@vueuse/nuxt': 8.3.0
@@ -780,17 +778,6 @@ packages:
       - eslint-import-resolver-webpack
       - supports-color
       - typescript
-    dev: true
-
-  /@pinia/nuxt/0.1.8:
-    resolution: {integrity: sha512-+M1GH/4XQdooOulPL7aYzli6UE1R5rWJtgcPhx2/97yYRLhKZvuIT33OauUCjYZ+tQVs8lyKfzt6S2agqzcmWg==}
-    peerDependencies:
-      pinia: ~2.0.9
-    dependencies:
-      vue-demi: 0.12.5
-    transitivePeerDependencies:
-      - '@vue/composition-api'
-      - vue
     dev: true
 
   /@polka/url/1.0.0-next.21:
