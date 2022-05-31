@@ -5,14 +5,11 @@ const lifecycle = process.env.npm_lifecycle_event
 // https://v3.nuxtjs.org/api/configuration/nuxt.config
 export default defineNuxtConfig({
   modules: [
-    '@vueuse/nuxt',
     '@unocss/nuxt',
+    '@nuxtjs/color-mode',
   ],
   experimental: {
     reactivityTransform: true,
-  },
-  vueuse: {
-    ssrHandlers: true,
   },
   // css
   css: [
@@ -41,5 +38,8 @@ export default defineNuxtConfig({
         'text-[0.9em] inline-block cursor-pointer select-none opacity-75 transition duration-200 ease-in-out hover:opacity-100 hover:text-teal-600',
       ],
     ],
+  },
+  colorMode: {
+    classSuffix: '',
   },
 })

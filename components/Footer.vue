@@ -1,8 +1,9 @@
 <script setup lang="ts">
-import { useDark, useToggle } from '@vueuse/core'
+const color = useColorMode()
 
-const isDark = useDark()
-const toggleDark = useToggle(isDark)
+function toggleDark() {
+  color.preference = color.value === 'dark' ? 'light' : 'dark'
+}
 </script>
 
 <template>
@@ -17,7 +18,7 @@ const toggleDark = useToggle(isDark)
     text="gray-700 dark:gray-200"
   >
     <button class="icon-btn !outline-none" @click="toggleDark">
-      <div v-if="isDark" i-carbon-moon />
+      <div v-if="color === 'dark'" i-carbon-moon />
       <div v-else i-carbon-sun />
     </button>
 
