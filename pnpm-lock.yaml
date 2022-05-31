@@ -12,19 +12,17 @@ specifiers:
   element-plus: ^2.2.2
   eslint: ^8.13.0
   nuxt: 3.0.0-rc.1
-  pinia: ^2.0.13
   typescript: ^4.6.3
 
 dependencies:
   '@vueuse/core': 8.3.0
   element-plus: 2.2.2
-  pinia: 2.0.13_typescript@4.6.3
 
 devDependencies:
   '@iconify-json/carbon': 1.1.5
   '@iconify-json/mdi': 1.1.19
   '@ouduidui/eslint-config-vue': 0.1.1_jzhokl4shvj5szf5bgr66kln2a
-  '@pinia/nuxt': 0.1.8_pinia@2.0.13
+  '@pinia/nuxt': 0.1.8
   '@unocss/nuxt': 0.31.12
   '@unocss/reset': 0.31.12
   '@vueuse/nuxt': 8.3.0
@@ -784,12 +782,11 @@ packages:
       - typescript
     dev: true
 
-  /@pinia/nuxt/0.1.8_pinia@2.0.13:
+  /@pinia/nuxt/0.1.8:
     resolution: {integrity: sha512-+M1GH/4XQdooOulPL7aYzli6UE1R5rWJtgcPhx2/97yYRLhKZvuIT33OauUCjYZ+tQVs8lyKfzt6S2agqzcmWg==}
     peerDependencies:
       pinia: ~2.0.9
     dependencies:
-      pinia: 2.0.13_typescript@4.6.3
       vue-demi: 0.12.5
     transitivePeerDependencies:
       - '@vue/composition-api'
@@ -1378,6 +1375,7 @@ packages:
 
   /@vue/devtools-api/6.1.4:
     resolution: {integrity: sha512-IiA0SvDrJEgXvVxjNkHPFfDx6SXw0b/TUkqMcDZWNg9fnCAHbTpoo59YfJ9QLFkwa3raau5vSlRVzMSLDnfdtQ==}
+    dev: true
 
   /@vue/reactivity-transform/3.2.33:
     resolution: {integrity: sha512-4UL5KOIvSQb254aqenW4q34qMXbfZcmEsV/yVidLUgvwYQQ/D21bGX3DlgPUGI3c4C+iOnNmDCkIxkILoX/Pyw==}
@@ -5105,23 +5103,6 @@ packages:
     resolution: {integrity: sha1-7RQaasBDqEnqWISY59yosVMw6Qw=}
     engines: {node: '>=0.10.0'}
     dev: true
-
-  /pinia/2.0.13_typescript@4.6.3:
-    resolution: {integrity: sha512-B7rSqm1xNpwcPMnqns8/gVBfbbi7lWTByzS6aPZ4JOXSJD4Y531rZHDCoYWBwLyHY/8hWnXljgiXp6rRyrofcw==}
-    peerDependencies:
-      '@vue/composition-api': ^1.4.0
-      typescript: '>=4.4.4'
-      vue: ^2.6.14 || ^3.2.0
-    peerDependenciesMeta:
-      '@vue/composition-api':
-        optional: true
-      typescript:
-        optional: true
-    dependencies:
-      '@vue/devtools-api': 6.1.4
-      typescript: 4.6.3
-      vue-demi: 0.12.5
-    dev: false
 
   /pkg-types/0.3.2:
     resolution: {integrity: sha512-eBYzX/7NYsQEOR2alWY4rnQB49G62oHzFpoi9Som56aUr8vB8UGcmcIia9v8fpBeuhH3Ltentuk2OGpp4IQV3Q==}

@@ -5,7 +5,6 @@ export default defineNuxtConfig({
   modules: [
     '@vueuse/nuxt',
     '@unocss/nuxt',
-    '@pinia/nuxt',
   ],
   experimental: {
     reactivityTransform: true,
