@@ -1,5 +1,7 @@
 {
   "name": "tools",
+  "private": true,
+  "packageManager": "pnpm@7.0.1",
   "scripts": {
     "build": "nuxt build",
     "dev": "nuxt dev",
@@ -14,7 +16,6 @@
     "@iconify-json/carbon": "^1.1.5",
     "@iconify-json/mdi": "^1.1.19",
     "@ouduidui/eslint-config-vue": "^0.1.1",
-    "@pinia/nuxt": "^0.1.8",
     "@unocss/nuxt": "^0.31.8",
     "@unocss/reset": "^0.31.12",
     "@vueuse/nuxt": "^8.3.0",
