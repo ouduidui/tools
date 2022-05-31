@@ -1,5 +1,5 @@
 {
-  "private": true,
+  "name": "tools",
   "scripts": {
     "build": "nuxt build",
     "dev": "nuxt dev",
@@ -8,7 +8,7 @@
   },
   "dependencies": {
     "@vueuse/core": "^8.3.0",
-    "ant-design-vue": "^3.2.5",
+    "element-plus": "^2.2.2",
     "pinia": "^2.0.13"
   },
   "devDependencies": {

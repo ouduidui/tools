@@ -13,6 +13,13 @@ export default defineNuxtConfig({
   vueuse: {
     ssrHandlers: true,
   },
+  // css
+  css: ['element-plus/dist/index.css'],
+  components: {
+    dirs: [
+      '~/components',
+    ],
+  },
   unocss: {
     uno: true,
     attributify: true,

@@ -1,5 +1,11 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import {
+  ElButton,
+} from 'element-plus'
+</script>
 
-<template>bilibili</template>
+<template>
+  <ElButton>HelloWorld</ElButton>
+</template>
 
 <style scope></style>
