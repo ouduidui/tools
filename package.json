@@ -4,7 +4,7 @@
   "packageManager": "pnpm@7.0.1",
   "scripts": {
     "build": "nuxt build",
-    "dev": "nuxt dev",
+    "dev": "nuxt dev -p 7777",
     "generate": "nuxt generate",
     "preview": "nuxt preview"
   },

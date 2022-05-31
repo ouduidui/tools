@@ -1,5 +1,6 @@
 export default defineEventHandler(() => {
   return {
-    api: 'Work',
+    code: 1,
+    message: 'Hello World',
   }
 })
