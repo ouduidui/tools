@@ -6,6 +6,11 @@
     "generate": "nuxt generate",
     "preview": "nuxt preview"
   },
+  "dependencies": {
+    "@vueuse/core": "^8.3.0",
+    "element-plus": "^2.2.2",
+    "pinia": "^2.0.13"
+  },
   "devDependencies": {
     "@iconify-json/carbon": "^1.1.5",
     "@iconify-json/mdi": "^1.1.19",
@@ -13,12 +18,9 @@
     "@pinia/nuxt": "^0.1.8",
     "@unocss/nuxt": "^0.31.8",
     "@unocss/reset": "^0.31.12",
-    "@vueuse/core": "^8.3.0",
     "@vueuse/nuxt": "^8.3.0",
-    "element-plus": "^2.2.2",
     "eslint": "^8.13.0",
     "nuxt": "3.0.0-rc.1",
-    "pinia": "^2.0.13",
     "typescript": "^4.6.3"
   }
 }
