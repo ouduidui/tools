@@ -1,6 +1,7 @@
 lockfileVersion: 5.4
 
 specifiers:
+  '@iconify-json/carbon': ^1.1.5
   '@iconify-json/mdi': ^1.1.19
   '@ouduidui/eslint-config-vue': ^0.1.1
   '@pinia/nuxt': ^0.1.8
@@ -20,6 +21,7 @@ dependencies:
   pinia: 2.0.13_typescript@4.6.3
 
 devDependencies:
+  '@iconify-json/carbon': 1.1.5
   '@iconify-json/mdi': 1.1.19
   '@ouduidui/eslint-config-vue': 0.1.1_jzhokl4shvj5szf5bgr66kln2a
   '@pinia/nuxt': 0.1.8_pinia@2.0.13
@@ -401,6 +403,12 @@ packages:
 
   /@humanwhocodes/object-schema/1.2.1:
     resolution: {integrity: sha512-ZnQMnLV4e7hDlUvw8H+U8ASL02SS2Gn6+9Ac3wGGLIe7+je2AeAOxPY+izIPJDfFDb7eDjev0Us8MO1iFRN8hA==}
+    dev: true
+
+  /@iconify-json/carbon/1.1.5:
+    resolution: {integrity: sha512-ENl8CIEo+7JcRzpJ/58i+dDc3fkNOO7gyNGg4S4JN5cAiVpvltYTVO86Oei7rpl8bKypJ0vk3B0BbzzTw7DclA==}
+    dependencies:
+      '@iconify/types': 1.1.0
     dev: true
 
   /@iconify-json/mdi/1.1.19:

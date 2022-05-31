@@ -5,11 +5,11 @@ const navs = [
 </script>
 
 <template>
-  <div h-screen flex="~ col" mb-10 items-center justify-center>
+  <div flex="~ col" mt-10 mb-10 items-center justify-center>
     <p
       i-mdi-tools
-      w-15
-      h-15
+      w-13
+      h-13
       opacity-80
       mb-10
     />

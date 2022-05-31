@@ -14,7 +14,10 @@ export default defineNuxtConfig({
     ssrHandlers: true,
   },
   // css
-  css: ['element-plus/dist/index.css'],
+  css: [
+    'element-plus/dist/index.css',
+    'element-plus/theme-chalk/dark/css-vars.css',
+  ],
   components: {
     dirs: [
       '~/components',
@@ -27,5 +30,11 @@ export default defineNuxtConfig({
     icons: {
       scale: 1.2,
     },
+    shortcuts: [
+      [
+        'icon-btn',
+        'text-[0.9em] inline-block cursor-pointer select-none opacity-75 transition duration-200 ease-in-out hover:opacity-100 hover:text-teal-600',
+      ],
+    ],
   },
 })
