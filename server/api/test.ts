@@ -1,6 +1,5 @@
+import { successHandler } from '../controller/response'
+
 export default defineEventHandler(() => {
-  return {
-    code: 1,
-    message: 'Hello World',
-  }
+  return successHandler('HelloWorld')
 })
