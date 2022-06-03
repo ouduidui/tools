@@ -9,5 +9,5 @@ export default defineEventHandler(async(e) => {
 
   const [err, data] = await getVideoListByUid(uid, page, limit)
   if (err) return failHandler(err)
-  return successHandler('get list success', data)
+  return successHandler('get list success', data.data)
 })
