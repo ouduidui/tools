@@ -1,16 +1,16 @@
 import axios from 'axios'
 import type { AxiosRequestConfig } from 'axios'
 
-type RequestReturnType = RequestFailReturn | RequestSuccessReturn
+export type RequestReturnType<T = any> = RequestFailReturn | RequestSuccessReturn<T>
 
 type RequestFailReturn = [
   errMsg: string,
   successRes:null,
 ]
 
-type RequestSuccessReturn = [
+type RequestSuccessReturn<T> = [
   errMsg: null,
-  successRes: null | { status: number; data: unknown },
+  successRes: null | { status: number; data: T },
 ]
 
 axios.interceptors.response.use(
