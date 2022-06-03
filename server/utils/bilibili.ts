@@ -18,11 +18,11 @@ interface BVideoType {
 
 interface BVideoListResponseType {
   list: {
-    id: any
+    id: number
     title: string
-    play: any
-    comment: any
-    created: any
+    play: number
+    comment: number
+    created: number
   }[]
   page: {
     total: number
@@ -34,7 +34,7 @@ interface BVideoListResponseType {
 const videoListResHandle = (list: any[]): BVideoType[] => {
   return list.map((v) => {
     return {
-      id: v.id,
+      id: v.aid,
       title: v.title,
       play: v.play,
       comment: v.comment,
