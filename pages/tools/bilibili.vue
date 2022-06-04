@@ -8,6 +8,7 @@ import {
   ElTableColumn,
 } from 'element-plus'
 import dayjs from 'dayjs'
+import axios from 'axios'
 
 interface VideoItemType {
   id: number
@@ -30,31 +31,25 @@ const localUid = query.uid || ''
 const uid = ref(localUid)
 const videoList = ref<VideoItemType[]>()
 const paginator = ref<Paginator>()
-const currentPage = ref<number>(query.page || 1)
+const currentPage = ref<number>(Number(query.page) || 1)
 
 const getVideoList = async(uid: string, page = 1) => {
   try {
-    const { data: res, error } = await useFetch(`/api/bilibili/list/${uid}?page=${page}`)
-    if (error.value) {
-      useMsg(error.value, 'warning')
+    const { data: res, status } = await axios(`/api/bilibili/list/${uid}?page=${page}`)
+    const { code, message, data } = res
+    if (code === 1) {
+      videoList.value = data.list
+      paginator.value = data.page
+      paginator.value.totalPage = Math.ceil(paginator.value.total / paginator.value.pageSize)
     }
-    else {
-      const { code, message, data } = res.value
-      if (code === 1) {
-        videoList.value = data.list
-        paginator.value = data.page
-        paginator.value.totalPage = Math.ceil(paginator.value.total / paginator.value.pageSize)
-      }
-      else { useMsg(message, 'warning') }
-    }
+    else { useMsg(message, 'warning') }
   }
   catch (e) {
     useMsg(e.message, 'warning')
   }
 }
 
-if (localUid)
-  await getVideoList(localUid, currentPage.value)
+if (localUid) await getVideoList(localUid, currentPage.value)
 
 const router = useRouter()
 
