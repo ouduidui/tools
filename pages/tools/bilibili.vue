@@ -1,6 +1,7 @@
 <script setup lang="ts">
 /* eslint-disable vue/no-deprecated-v-on-native-modifier */
 import {
+  ElEmpty,
   ElInput,
   ElPagination,
   ElTable,
@@ -21,14 +22,15 @@ interface Paginator {
   total: number
   pageSize: number
   totalPage: number
-
 }
 
-const uid = ref('12890453')
-let localUid = ''
+const { query } = useRoute()
+
+const localUid = query.uid || ''
+const uid = ref(localUid)
 const videoList = ref<VideoItemType[]>()
 const paginator = ref<Paginator>()
-const currentPage = ref<number>(1)
+const currentPage = ref<number>(query.page || 1)
 
 const getVideoList = async(uid: string, page = 1) => {
   try {
@@ -51,19 +53,20 @@ const getVideoList = async(uid: string, page = 1) => {
   }
 }
 
-const search = async() => {
-  if (uid.value) {
-    localUid = uid.value
-    await getVideoList(localUid)
-  }
-  else { useMsg('请输入用户ID', 'warning') }
+if (localUid)
+  await getVideoList(localUid, currentPage.value)
+
+const router = useRouter()
+
+const search = () => {
+  if (uid.value || uid.value !== localUid)
+    router.push(`/tools/bilibili?uid=${uid.value}&page=${currentPage.value}`)
+  else useMsg('请输入用户ID', 'warning')
 }
 
 const timestampFormatter = (row, col, val) => dayjs(val * 1000).format('YYYY-MM-DD HH:mm:ss')
 
-watch(currentPage, async() => {
-  await getVideoList(localUid, currentPage.value)
-})
+watch(currentPage, () => router.push(`/tools/bilibili?uid=${uid.value}&page=${currentPage.value}`))
 </script>
 
 <template>
@@ -80,7 +83,7 @@ watch(currentPage, async() => {
         </template>
       </el-input>
     </div>
-    <div v-if="videoList && paginator">
+    <template v-if="videoList && paginator">
       <el-table
         :data="videoList"
         stripe
@@ -115,6 +118,9 @@ watch(currentPage, async() => {
           :total="paginator.total"
         />
       </div>
-    </div>
+    </template>
+    <template v-else>
+      <el-empty description="暂无搜索结果" />
+    </template>
   </div>
 </template>
