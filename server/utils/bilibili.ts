@@ -1,4 +1,5 @@
-import type { RequestReturnType } from './request'
+
+import type { BaseReturnType } from '../types/returnType'
 import { request } from './request'
 
 const BILIBILI_API = {
@@ -52,7 +53,7 @@ export const getVideoListByUid = async(
   uid: string,
   page,
   limit,
-): Promise<RequestReturnType<BVideoListResponseType>> => {
+): Promise<BaseReturnType<BVideoListResponseType>> => {
   try {
     const [err, res] = await request({
       url: BILIBILI_API.VIDEO_LIST.url,
@@ -72,14 +73,11 @@ export const getVideoListByUid = async(
       const { status, data } = res
       if (status === 200 && data.code === 0) {
         return [null, {
-          status: 200,
-          data: {
-            list: videoListResHandle(data.data.list.vlist),
-            page: {
-              currentPage: data.data.page.pn,
-              total: data.data.page.count,
-              pageSize: data.data.page.ps,
-            },
+          list: videoListResHandle(data.data.list.vlist),
+          page: {
+            currentPage: data.data.page.pn,
+            total: data.data.page.count,
+            pageSize: data.data.page.ps,
           },
         }]
       }
