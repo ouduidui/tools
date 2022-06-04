@@ -49,7 +49,7 @@ const getVideoList = async(uid: string, page = 1) => {
     }
   }
   catch (e) {
-    useMsg(e.value, 'warning')
+    useMsg(e.message, 'warning')
   }
 }
 
