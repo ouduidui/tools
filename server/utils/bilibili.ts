@@ -10,21 +10,16 @@ const BILIBILI_API = {
 }
 
 interface BVideoType {
-  id: any
+  id: number
+  bvid: string
   title: string
-  play: any
-  comment: any
-  created: any
+  play: number
+  comment: number
+  created: number
 }
 
 interface BVideoListResponseType {
-  list: {
-    id: number
-    title: string
-    play: number
-    comment: number
-    created: number
-  }[]
+  list: BVideoType[]
   page: {
     total: number
     currentPage: number
@@ -40,6 +35,7 @@ const videoListResHandle = (list: any[]): BVideoType[] => {
       play: v.play,
       comment: v.comment,
       created: v.created,
+      bvid: v.bvid,
     }
   })
 }

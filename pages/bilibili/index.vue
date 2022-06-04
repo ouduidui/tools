@@ -17,6 +17,7 @@ interface VideoItemType {
   comment: number
   play: number
   created: number
+  bvid: string
 }
 
 interface Paginator {
@@ -65,6 +66,8 @@ const timestampFormatter = (row, col, val) => dayjs(val * 1000).format('YYYY-MM-
 watch(currentPage, () => router.push(`/bilibili?uid=${uid.value}&page=${currentPage.value}`))
 
 const detailHandle = ({ row }) => router.push(`/bilibili/${row.id}`)
+
+const toBilibiliHandle = ({ row }) => window.open(`https://www.bilibili.com/video/${row.bvid}`)
 </script>
 
 <template>
@@ -107,10 +110,13 @@ const detailHandle = ({ row }) => router.push(`/bilibili/${row.id}`)
           :formatter="timestampFormatter"
           width="180"
         />
-        <el-table-column fixed="right" label="操作" width="100">
+        <el-table-column fixed="right" label="操作" width="150">
           <template #default="scope">
+            <el-button link size="small" @click="toBilibiliHandle(scope)">
+              B站
+            </el-button>
             <el-button text size="small" @click="detailHandle(scope)">
-              详情
+              评论
             </el-button>
           </template>
         </el-table-column>

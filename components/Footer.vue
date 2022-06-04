@@ -26,7 +26,7 @@ function toggleDark() {
       class="icon-btn"
       i-carbon-logo-github
       rel="noreferrer"
-      href="https://github.com/ouduidui"
+      href="https://github.com/ouduidui/tools"
       target="_blank"
       title="GitHub"
     />
