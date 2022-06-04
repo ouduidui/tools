@@ -40,6 +40,13 @@ const videoListResHandle = (list: any[]): BVideoType[] => {
   })
 }
 
+export interface VideoListOptions {
+  page: number
+  limit: number
+  sort: 'stow' | 'click' | 'pubdate'
+  keyword: string
+}
+
 /**
  * 通过uid获取用户列表
  * @param uid
@@ -47,8 +54,12 @@ const videoListResHandle = (list: any[]): BVideoType[] => {
  */
 export const getVideoListByUid = async(
   uid: string,
-  page,
-  limit,
+  {
+    page: pn,
+    limit: ps,
+    sort: order,
+    keyword,
+  }: VideoListOptions,
 ): Promise<BaseReturnType<BVideoListResponseType>> => {
   try {
     const [err, res] = await request({
@@ -57,8 +68,10 @@ export const getVideoListByUid = async(
       params: {
         jsonp: 'jsonp',
         mid: uid,
-        pn: page,
-        ps: limit,
+        pn,
+        ps,
+        order,
+        keyword,
       },
     })
 
