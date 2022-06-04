@@ -1,6 +1,7 @@
 <script setup lang="ts">
 /* eslint-disable vue/no-deprecated-v-on-native-modifier */
 import {
+  ElButton,
   ElEmpty,
   ElInput,
   ElPagination,
@@ -55,13 +56,15 @@ const router = useRouter()
 
 const search = () => {
   if (uid.value || uid.value !== localUid)
-    router.push(`/tools/bilibili?uid=${uid.value}&page=${currentPage.value}`)
+    router.push(`/bilibili?uid=${uid.value}&page=${currentPage.value}`)
   else useMsg('请输入用户ID', 'warning')
 }
 
 const timestampFormatter = (row, col, val) => dayjs(val * 1000).format('YYYY-MM-DD HH:mm:ss')
 
-watch(currentPage, () => router.push(`/tools/bilibili?uid=${uid.value}&page=${currentPage.value}`))
+watch(currentPage, () => router.push(`/bilibili?uid=${uid.value}&page=${currentPage.value}`))
+
+const detailHandle = ({ row }) => router.push(`/bilibili/${row.id}`)
 </script>
 
 <template>
@@ -104,6 +107,13 @@ watch(currentPage, () => router.push(`/tools/bilibili?uid=${uid.value}&page=${cu
           :formatter="timestampFormatter"
           width="180"
         />
+        <el-table-column fixed="right" label="操作" width="100">
+          <template #default="scope">
+            <el-button text size="small" @click="detailHandle(scope)">
+              详情
+            </el-button>
+          </template>
+        </el-table-column>
       </el-table>
       <div flex="~ col" mt-5 items-center>
         <el-pagination

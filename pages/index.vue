@@ -1,6 +1,6 @@
 <script setup lang="ts">
 const navs = [
-  { path: '/tools/bilibili', label: '哔哩哔哩' },
+  { path: '/bilibili', label: '哔哩哔哩' },
 ]
 </script>
 
