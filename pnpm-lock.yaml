@@ -8,6 +8,7 @@ specifiers:
   '@unocss/nuxt': ^0.37.0
   '@unocss/reset': ^0.37.0
   axios: ^0.27.2
+  dayjs: ^1.11.2
   element-plus: ^2.2.2
   eslint: ^8.16.0
   nuxt: 3.0.0-rc.3
@@ -15,6 +16,7 @@ specifiers:
 
 dependencies:
   axios: 0.27.2
+  dayjs: 1.11.2
 
 devDependencies:
   '@iconify-json/carbon': 1.1.5
@@ -500,11 +502,11 @@ packages:
     resolution: {integrity: sha512-YBI/6o2EBz02tdEJRBK8xkt3zvOFOWlLBf7WKYGBsSYSRtjjgrqPe2skp6VLLmKx5WbHHDNcW+6oACaurxGzeA==}
     dev: true
 
-  /@nuxt/kit-edge/3.0.0-rc.3-27567768.c1f728e:
-    resolution: {integrity: sha512-sMCKsT0EXqPODwLZFVNu2cHnEVHGW81/HR9cMEY5UIdfMfpm+P+o9RVntYCFr2L8Z5gAvGlJ7QINzf3rYRwNzw==}
+  /@nuxt/kit-edge/3.0.0-rc.3-27571095.9379606:
+    resolution: {integrity: sha512-bG1uuen63yWUdaBd6hf4bSea5mbY/6YmzjXn+iA1Vi9t4SbYnUXTv8A4ibMesrH+6n0iO11rtcrDi0zVqYEoMQ==}
     engines: {node: ^14.16.0 || ^16.11.0 || ^17.0.0 || ^18.0.0}
     dependencies:
-      '@nuxt/schema': /@nuxt/schema-edge/3.0.0-rc.3-27567768.c1f728e
+      '@nuxt/schema': /@nuxt/schema-edge/3.0.0-rc.3-27571095.9379606
       c12: 0.2.7
       consola: 2.15.3
       defu: 6.0.0
@@ -620,8 +622,8 @@ packages:
       - webpack
     dev: true
 
-  /@nuxt/schema-edge/3.0.0-rc.3-27567768.c1f728e:
-    resolution: {integrity: sha512-azX6GCaqan40kBvDEzLUqm9bbYVYwYhGDlGKe1iJ+xlrBRjye8Hw3s+q24IHYj5Kw03l2Oe4itPEsn1goljI/A==}
+  /@nuxt/schema-edge/3.0.0-rc.3-27571095.9379606:
+    resolution: {integrity: sha512-bhKgXir7gUnHM0ZRzhoZgNC+oZWB1C9UGXYpH21pJvK0dGHBnYHCYZAQwJcNcmYyzyw6RHoUxTlZW6pv4X0JHw==}
     engines: {node: ^14.16.0 || ^16.11.0 || ^17.0.0 || ^18.0.0}
     dependencies:
       c12: 0.2.7
@@ -765,7 +767,7 @@ packages:
   /@nuxtjs/color-mode/3.0.3:
     resolution: {integrity: sha512-FQVyLgRQ4C4C5NmTBrFRNm+LNjgT4cPFqyqfoRxD6hfVZhLxWJfKPGUaT8H/BCeBzkZZ29583MG9GqyDX7rnNg==}
     dependencies:
-      '@nuxt/kit': /@nuxt/kit-edge/3.0.0-rc.3-27567768.c1f728e
+      '@nuxt/kit': /@nuxt/kit-edge/3.0.0-rc.3-27571095.9379606
       defu: 5.0.1
       lodash.template: 4.5.0
       pathe: 0.2.0
@@ -2238,7 +2240,6 @@ packages:
 
   /dayjs/1.11.2:
     resolution: {integrity: sha512-F4LXf1OeU9hrSYRPTTj/6FbO4HTjPKXvEIC1P2kcnFurViINCVk3ZV0xAS3XVx9MkMsXbbqlK6hjseaYbgKEHw==}
-    dev: true
 
   /debug/2.6.9:
     resolution: {integrity: sha512-bC7ElrdJaJnPbAP+1EotYvqZsb3ecl5wi6Bfi6BJTUcNowp6cvspg0jXznRTKDjm/E7AdgFBVeAPVMNcKGsHMA==}
