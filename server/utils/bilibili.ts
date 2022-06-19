@@ -7,6 +7,10 @@ const BILIBILI_API = {
     methods: 'get',
     url: 'https://api.bilibili.com/x/space/arc/search',
   },
+  VIDEO_COMMENT: {
+    methods: 'get',
+    url: 'https://api.bilibili.com/x/v2/reply/reply',
+  },
 }
 
 interface BVideoType {
@@ -52,7 +56,7 @@ export interface VideoListOptions {
  * @param uid
  * @returns
  */
-export const getVideoListByUid = async(
+export const getVideoListByUid = async (
   uid: string,
   {
     page: pn,
