@@ -166,6 +166,7 @@ const detailHandle = async ({ row }) => {
     '评论点赞数': c.like,
     '评论时间': dayjs(c.created * 1000).format('YYYY-MM-DD HH:mm:ss')
   })), title)
+  closeFn()
 }
 
 const toBilibiliHandle = ({ row }) => window.open(`https://www.bilibili.com/video/${row.bvid}`)
