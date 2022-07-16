@@ -132,8 +132,7 @@ const delayFn = (fn: () => Promise<any>, delay = 500) => new Promise(resolve => 
 
 const detailHandle = async ({ row }) => {
   comments.length = 0
-  const vid = row.id
-  const commentCount = row.comment
+  const {title, id: vid, comment : commentCount} = row
   let closeFn = useLoading('加载中...')
   const res = await getCommentList(vid)
   if (!res) {
@@ -147,13 +146,26 @@ const detailHandle = async ({ row }) => {
     for (let page = currentPage + 1; page < totalPages; page++) {
       closeFn()
       closeFn = useLoading(`${comments.length}/${commentCount}`)
-      const res = await delayFn(() => getCommentList(vid))
+      const res = await delayFn(() => getCommentList(vid, page), 5000)
       if (!res) {
         closeFn()
         return
       }
     }
   }
+
+  closeFn()
+  closeFn = useLoading('导出中...')
+  await useExportExcel(comments.map(c => ({
+    '用户名称': c.member.name,
+    '用户id': c.member.uid,
+    '用户等级': c.member.level,
+    '用户性别': c.member.sex,
+    '评论内容': c.content,
+    '评论回复数': c.reply,
+    '评论点赞数': c.like,
+    '评论时间': dayjs(c.created * 1000).format('YYYY-MM-DD HH:mm:ss')
+  })), title)
 }
 
 const toBilibiliHandle = ({ row }) => window.open(`https://www.bilibili.com/video/${row.bvid}`)
