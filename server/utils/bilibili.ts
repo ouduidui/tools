@@ -246,6 +246,7 @@ export const getVideoCommentsListByVid = async (
       params: {
         type: 1,
         pn: page,
+        ps: 10,
         oid: vid,
         sort: 1,
       },
