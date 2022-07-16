@@ -2,7 +2,7 @@ import type { VideoListOptions } from '~~/server/utils/bilibili'
 import { getVideoListByUid } from '~~/server/utils/bilibili'
 import { failHandler, successHandler } from '~~/server/utils/response'
 
-export default defineEventHandler(async(e) => {
+export default defineEventHandler(async (e) => {
   const { uid } = e.context.params
   if (!uid) return failHandler('请输入用户id')
 
