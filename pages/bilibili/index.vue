@@ -29,7 +29,7 @@ interface Paginator {
 
 const { query } = useRoute()
 
-const localUid = query.uid || ''
+const localUid = query.uid as string || ''
 const uid = ref(localUid)
 const videoList = ref<VideoItemType[]>()
 const paginator = ref<Paginator>()
@@ -65,7 +65,11 @@ const timestampFormatter = (row, col, val) => dayjs(val * 1000).format('YYYY-MM-
 
 watch(currentPage, () => router.push(`/bilibili?uid=${uid.value}&page=${currentPage.value}`))
 
-const detailHandle = ({ row }) => router.push(`/bilibili/${row.id}`)
+const detailHandle = ({ row }) => {
+  // TODO
+  console.log(row.id)
+  const closeFn = useLoading('加载中...')
+}
 
 const toBilibiliHandle = ({ row }) => window.open(`https://www.bilibili.com/video/${row.bvid}`)
 </script>
@@ -112,11 +116,21 @@ const toBilibiliHandle = ({ row }) => window.open(`https://www.bilibili.com/vide
         />
         <el-table-column fixed="right" label="操作" width="150">
           <template #default="scope">
-            <el-button link size="small" @click="toBilibiliHandle(scope)">
+            <el-button
+              link
+              size="small"
+              class="opacity-80 hover:opacity-100"
+              @click="toBilibiliHandle(scope)"
+            >
               B站
             </el-button>
-            <el-button text size="small" @click="detailHandle(scope)">
-              评论
+            <el-button
+              text
+              size="small"
+              class="opacity-80 hover:opacity-100"
+              @click="detailHandle(scope)"
+            >
+              导出评论
             </el-button>
           </template>
         </el-table-column>
