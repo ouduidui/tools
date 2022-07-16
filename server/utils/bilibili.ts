@@ -271,7 +271,7 @@ export const getVideoCommentsListByVid = async (
           page: {
             total: page.count,
             currentPage: page.num,
-            pageSize: Math.ceil(page.count / page.size),
+            pageSize: page.size,
           },
         }]
       }

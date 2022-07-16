@@ -5,7 +5,7 @@ import { ElLoading } from 'element-plus'
  * @param text
  * @returns close function
  */
-export const useLoading = (text: ''): () => void => {
+export const useLoading = (text = ''): () => void => {
   const loading = ElLoading.service({
     lock: true,
     text,

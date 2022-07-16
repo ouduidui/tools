@@ -35,19 +35,82 @@ const videoList = ref<VideoItemType[]>()
 const paginator = ref<Paginator>()
 const currentPage = ref<number>(Number(query.page) || 1)
 
+interface BVideoListResponseType {
+  list: {
+    id: number
+    bvid: string
+    title: string
+    play: number
+    comment: number
+    created: number
+  }[]
+  page: {
+    total: number
+    currentPage: number
+    pageSize: number
+  }
+}
+
+interface BVideoCommentType {
+  content: string
+  created: number
+  like: number
+  reply: number
+  member: {
+    uid: string
+    name: string
+    sex: string
+    level: number
+  }
+}
+
+interface BVideoCommentListResponseType {
+  list: BVideoCommentType[]
+  page: {
+    total: number
+    currentPage: number
+    pageSize: number
+  }
+}
+
 const getVideoList = async(uid: string, page = 1) => {
   try {
-    const { data: res, status } = await axios(`/api/bilibili/list/${uid}?page=${page}`)
+    const { data: res } = await axios(`/api/bilibili/list/${uid}?page=${page}`)
     const { code, message, data } = res
     if (code === 1) {
-      videoList.value = data.list
-      paginator.value = data.page
-      paginator.value.totalPage = Math.ceil(paginator.value.total / paginator.value.pageSize)
+      const { list, page } = data as BVideoListResponseType
+      videoList.value = list
+      paginator.value = {
+        ...page,
+        totalPage: Math.ceil(page.total / page.pageSize),
+      }
     }
     else { useMsg(message, 'warning') }
   }
   catch (e) {
     useMsg(e.message, 'warning')
+  }
+}
+
+const comments: BVideoCommentType[] = []
+
+const getCommentList = async (vid, page = 1) => {
+  try {
+    const { data: res } = await axios(`/api/bilibili/comments/${vid}?page=${page}`)
+    const { code, message, data } = res
+    if (code === 1) {
+      const { list, page } = data as BVideoCommentListResponseType
+      comments.push(...list)
+      return page
+    }
+    else {
+      useMsg(message, 'warning')
+      return false
+    }
+  }
+  catch (e) {
+    useMsg(e.message, 'warning')
+    return false
   }
 }
 
@@ -65,10 +128,32 @@ const timestampFormatter = (row, col, val) => dayjs(val * 1000).format('YYYY-MM-
 
 watch(currentPage, () => router.push(`/bilibili?uid=${uid.value}&page=${currentPage.value}`))
 
-const detailHandle = ({ row }) => {
-  // TODO
-  console.log(row.id)
-  const closeFn = useLoading('加载中...')
+const delayFn = (fn: () => Promise<any>, delay = 500) => new Promise(resolve => setTimeout(async() => resolve(await fn()), delay))
+
+const detailHandle = async ({ row }) => {
+  comments.length = 0
+  const vid = row.id
+  const commentCount = row.comment
+  let closeFn = useLoading('加载中...')
+  const res = await getCommentList(vid)
+  if (!res) {
+    closeFn()
+    return
+  }
+
+  const { total, currentPage, pageSize } = res
+  const totalPages = Math.ceil(total / pageSize)
+  if (currentPage < totalPages) {
+    for (let page = currentPage + 1; page < totalPages; page++) {
+      closeFn()
+      closeFn = useLoading(`${comments.length}/${commentCount}`)
+      const res = await delayFn(() => getCommentList(vid))
+      if (!res) {
+        closeFn()
+        return
+      }
+    }
+  }
 }
 
 const toBilibiliHandle = ({ row }) => window.open(`https://www.bilibili.com/video/${row.bvid}`)
